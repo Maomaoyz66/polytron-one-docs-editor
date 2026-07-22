@@ -1,0 +1,12 @@
+node_modules/
+dist/
+chrome-*-profile/
+*-preview.png
+published/
+.tmp-ffmpeg/
+*.log
+*.tsbuildinfo
+*.zip
+.env
+.env.*
+!.env.example

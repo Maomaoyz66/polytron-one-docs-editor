@@ -1,0 +1,41 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/docs/:path*",
+      "destination": "/"
+    },
+    {
+      "source": "/docs",
+      "destination": "/"
+    },
+    {
+      "source": "/zh/docs/:path*",
+      "destination": "/"
+    },
+    {
+      "source": "/zh/docs",
+      "destination": "/"
+    },
+    {
+      "source": "/en/docs/:path*",
+      "destination": "/"
+    },
+    {
+      "source": "/en/docs",
+      "destination": "/"
+    },
+    {
+      "source": "/editor/:path*",
+      "destination": "/"
+    },
+    {
+      "source": "/editor",
+      "destination": "/"
+    }
+  ]
+}
