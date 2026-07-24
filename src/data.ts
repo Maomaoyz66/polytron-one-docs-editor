@@ -66,9 +66,9 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 2,
-    "summary": "POLYTRON ONE 是面向智慧安防与视频智能管理场景的一体化平台，支持相机接入管理、实时视频预览、AI 事件检测、警报联动处置、录像回放检索以及系统配置管理。\n平台通过统一接入多路视频资源，结合 AI 视频分析能力，实现对人员、车辆、区域、行为和设备状态的智能识别与持续监测。当系统检测到异常事件时，可自动触发警报，并联动实时画面、通知中心、录像片段和事件详情，形成从“视频接入—智能检测—警报触发—事件处置—录像追溯”的完整闭环。\n\n本文档面向 POLYTRON ONE 的平台使用人员，按照登录、实时预览、相机管理、警报设置、通知中心、录像回放和系统配置等实际使用路径组织内容，帮助用户快速理解平台能力、掌握页面操作方式，并完成日常视频管理与智能警报处置工作。1",
+    "summary": "POLYTRON ONE 是面向智慧安防与视频智能管理场景的一体化平台，支持相机接入管理、实时视频预览、AI 事件检测、警报联动处置、录像回放检索以及系统配置管理。\n平台通过统一接入多路视频资源，结合 AI 视频分析能力，实现对人员、车辆、区域、行为和设备状态的智能识别与持续监测。当系统检测到异常事件时，可自动触发警报，并联动实时画面、通知中心、录像片段和事件详情，形成从“视频接入—智能检测—警报触发—事件处置—录像追溯”的完整闭环。\n\n本文档面向 POLYTRON ONE 的平台使用人员，按照登录、实时预览、相机管理、警报设置、通知中心、录像回放和系统配置等实际使用路径组织内容，帮助用户快速理解平台能力、掌握页面操作方式，并完成日常视频管理与智能警报处置工作。",
     "tags": [
       "系统概述",
       "概览",
@@ -124,7 +124,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "用户身份验证模块说明登录访问、凭据保存和密码找回流程。\n本章节围绕用户进入 POLYTRON ONE 的常见动作展开，适合在首次登录、日常登录和找回密码时查阅。用户可以通过该章节了解平台厂商分配账号的登录方式、登录后的用户与权限维护入口，以及密码恢复流程。",
     "tags": [
@@ -159,7 +159,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 2,
     "summary": "登录是用户进入 POLYTRON ONE 平台的标准入口，用于完成用户身份验证和权限识别。用户需使用平台厂商或系统管理员分配的用户名和密码进行登录，系统验证通过后，将根据该账号绑定的角色权限，展示对应可访问的页面、相机资源和操作功能。",
     "tags": [
@@ -213,7 +213,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "客服支持",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "忘记密码用于帮助用户在无法使用原密码登录 POLYTRON ONE 时，通过绑定邮箱完成身份验证并重置登录密码。该功能适用于用户忘记密码、长期未登录导致密码遗失、密码记录丢失或账号无法正常访问等场景。",
     "tags": [
@@ -276,7 +276,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.2",
+    "version": "11.3",
     "readingTime": 1,
     "summary": "主页集中展示平台当前的运行状态、设备接入情况、资源使用情况和警报事件概览。用户进入系统后，通常会先通过主页快速了解平台整体状态，包括相机总数、在线 / 离线数量、系统资源占用、存储使用情况以及当前警报处理进度。主页将设备、资源和警报事件整合在同一视图中，帮助用户在短时间内判断平台是否运行正常、是否存在相机离线、服务器负载过高或待处理警报数量异常等问题。通过主页，用户可快速发现异常情况，并进一步进入实时预览、回放录像、相机管理、通知中心或系统设置等模块查看详情和执行处理操作。",
     "tags": [
@@ -320,7 +320,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "运维团队",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "系统信息用于查看 POLYTRON ONE 当前服务器或运行环境的资源使用情况，包括 CPU 使用率、内存使用率和磁盘使用率等关键指标。该模块帮助用户快速判断平台运行状态是否稳定，并为视频加载、录像写入、警报处理和系统运维提供基础参考。",
     "tags": [
@@ -369,7 +369,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "安防主管",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "警报概览用于集中展示平台当前产生的警报数量、待处理事件数量和已解决事件数量，帮助用户快速了解系统内异常事件的整体处理情况。用户可通过该区域判断当前是否存在需要优先关注的警报事件，并进一步进入通知列表或警报详情页面进行查看和处理。",
     "tags": [
@@ -418,7 +418,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "运维团队",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "相机信息用于查看 POLYTRON ONE 当前已接入的相机总体数量、在线数量和离线数量，帮助用户快速掌握平台内相机设备的接入规模与运行状态。该模块通常展示在主页或系统概览区域中，是用户判断视频系统是否正常运行的重要入口。",
     "tags": [
@@ -467,7 +467,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.0",
+    "version": "11.1",
     "readingTime": 1,
     "summary": "顶部工具栏用于承载平台的全局操作入口，帮助用户在任意功能页面中完成主题切换、系统设置访问和账号注销等基础操作。该区域通常固定显示在页面顶部，用户无需返回主页即可快速执行与当前业务页面无关的系统级操作。",
     "tags": [
@@ -511,7 +511,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "实时视图用于帮助用户组织和查看相机实时监控画面，是日常安防值守、现场观察和警报事件响应中最常用的功能模块。用户可根据不同区域、任务场景或监控目标创建独立标签页，并通过单画面或多画面网格布局集中查看多路相机视频。\n\n在实时视图中，用户不仅可以查看相机画面，还可以对相机执行快照、全屏查看、视频分析、云台控制和 3D 场景联动等操作。当系统检测到异常事件或触发警报时，对应相机画面会产生明显提示，帮助用户快速定位事件发生位置并进入后续处理流程。\n该模块适用于安保值班、重点区域监控、园区巡查、楼层监控、警报核查和突发事件响应等场景。",
     "tags": [
@@ -550,7 +550,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "安防主管",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "相机选择用于在实时视图中搜索、添加、移除、清空或自动填充相机画面，帮助用户快速搭建所需的监控布局。用户在配置实时监控画面时，需要先选择目标网格，再将对应相机添加到指定位置，系统会在该网格中加载对应的实时视频画面。",
     "tags": [
@@ -606,7 +606,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "网格用于配置实时预览页面的视频画面布局，决定用户在同一屏幕中可同时查看多少路相机画面，以及重点画面是否需要放大展示。通过选择不同的网格布局，用户可以根据监控任务、相机数量和屏幕尺寸，灵活切换单画面、多画面或重点画面查看方式。",
     "tags": [
@@ -650,7 +650,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 2,
     "summary": "视图操作用于在实时预览页面中对视频画面执行常用控制操作，包括快照保存、子码流切换、视频分析查看、全屏显示、录制状态查看、多视图控制和相机信息查看等。该区域帮助用户在观看实时视频的同时，快速完成画面确认、证据留存、模式切换和视频状态判断。",
     "tags": [
@@ -699,7 +699,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "设备工程",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "云台控制用于对支持云台功能的摄像机进行远程操作，用户可在实时预览页面中调整摄像机的观察方向、移动速度、变焦、对焦和光圈等参数。该功能适用于需要追踪移动目标、放大查看远处细节、调整监控视角或优化画面清晰度的场景。",
     "tags": [
@@ -743,7 +743,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.0",
+    "version": "11.1",
     "readingTime": 1,
     "summary": "标签管理用于对实时视图中的监控页面进行分类组织和快速切换。用户可根据不同区域、不同任务或不同监控场景创建多个实时视图标签，并在每个标签中配置独立的相机组合和网格布局。",
     "tags": [
@@ -798,7 +798,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "设备工程",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "控制面板用于配置和管理 POLYTRON 360° 相机的多视图显示、旋转策略、视角范围、位置保存和预览更新等功能。用户可通过该面板控制 360° 相机在实时视图中的展示方式，使画面能够在固定观察、自动巡航和多方向查看之间灵活切换。",
     "tags": [
@@ -849,7 +849,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.3",
+    "version": "11.4",
     "readingTime": 5,
     "summary": "回放模块将智能搜索与历史录像播放整合到同一工作台。用户可以用文字、语音或附件描述目标，限定全部相机或当前视图、选择日期时间和匹配阈值，再从搜索结果直接进入单画面、多画面或时间轴回放。",
     "tags": [
@@ -893,7 +893,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.3",
+    "version": "11.4",
     "readingTime": 5,
     "summary": "搜索与多画面回放页面用于同时限定搜索范围、选择相机并在单画面、四画面或九画面中核查历史录像。",
     "tags": [
@@ -938,7 +938,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.3",
+    "version": "11.4",
     "readingTime": 5,
     "summary": "智能搜索结果列表展示匹配录像的缩略图、相机、位置、时间和置信度，并可直接打开结果、排序、分页或清理列表。",
     "tags": [
@@ -983,7 +983,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.3",
+    "version": "11.4",
     "readingTime": 5,
     "summary": "时间轴视图是回放模块中与 Grid 并列的页面展示模式。它把智能搜索命中结果显示在横向时间线上，选择节点后在页面主体查看对应事件信息、置信度、文字描述和检测标注画面。",
     "tags": [
@@ -1033,7 +1033,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "安防主管",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "警报触发模块用于说明当系统检测到异常事件后，平台如何进行实时提示、通知写入、视频片段生成和后续处理流转。该模块覆盖从视频分析规则触发警报，到用户查看通知、核查视频片段、补充事件信息并完成处理的完整流程，帮助用户理解警报事件在系统中的生成、展示和处置逻辑。\n\n当相机启用视频分析规则后，系统会持续对实时画面进行检测。如果画面中出现符合规则的异常事件，例如人员越界、徘徊、摔倒、未授权进入、人员聚集或异常行为等，系统会自动生成警报记录，并在实时视图、通知列表和警报详情中同步展示相关信息。用户可通过这些入口快速定位事件来源、查看关联相机画面，并判断是否需要进一步处理。\n\n该模块适用于安保值守、异常事件提醒、视频核查、警报分类、事件追踪和处置闭环等场景，是平台从“智能检测”进入“人工确认与处理”的关键环节。",
     "tags": [
@@ -1084,7 +1084,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "警报触发流程用于说明当相机视频分析检测到异常事件后，系统如何生成警报，并同步更新实时视图、通知中心和警报详情等相关页面信息。该流程覆盖从 AI 检测规则触发、实时画面提示、通知记录生成，到用户进入详情查看视频片段并完成警报处理的完整路径。",
     "tags": [
@@ -1123,7 +1123,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "查看警报详情用于展示单条警报记录的完整信息和关联视频片段，帮助用户对警报事件进行核查、确认和后续处理。用户点击警报列表或通知列表中的警报记录后，系统会进入详情弹窗或详情页面，集中展示警报类型、警报时间、关联相机、事件位置、识别结果、处理状态以及警报触发前后的视频片段。",
     "tags": [
@@ -1173,7 +1173,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "运维团队",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "相机模块用于统一维护平台中的相机设备资料、实时 3D 地址、录像计划和警报规则。相机作为 POLYTRON ONE 平台的核心视频资源，其设备信息的准确性会直接影响实时查看、录像回放、AI 警报识别、3D 场景联动以及用户权限访问范围。通过相机模块，用户可以对已接入设备进行集中管理，包括查看和编辑相机名称、安装位置、所属分组、连接状态、视频流地址、实时 3D 地址、录像计划和警报配置等内容。平台会基于这些设备资料，将相机与实时预览、回放检索、通知中心、警报详情、角色权限和 3D 场景进行关联，从而保证视频资源能够被正确调用和管理。该模块主要面向管理员、运维人员和具备设备管理权限的用户，用于完成相机接入、信息维护、录像策略配置、警报规则配置和资源权限分配等工作。",
     "tags": [
@@ -1212,7 +1212,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "相机管理用于统一维护系统内已接入的相机设备资料，是平台进行实时预览、录像回放、AI 警报识别、3D 场景联动和权限资源分配的基础模块。用户可通过该页面查看相机当前运行状态，并对相机基础信息、安装位置、网络参数、视频流地址、编码参数和图像配置进行管理。",
     "tags": [
@@ -1278,7 +1278,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.0",
+    "version": "11.1",
     "readingTime": 2,
     "summary": "录像计划用于为指定相机配置录像时间、录像周期和录像策略，帮助用户根据不同业务场景灵活管理录像资源。用户可为相机设置全天录像、工作时间录像、非工作时间录像、重点时段录像或分时段录像等计划，使系统能够按照预设规则自动执行录像任务。",
     "tags": [
@@ -1330,7 +1330,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "警报设置用于为指定相机配置 AI 视频分析规则和警报触发规则，是平台实现智能识别、主动预警和事件联动的核心配置模块。用户可在实时画面中绘制检测区域或检测线，并选择对应的检测算法、排期时间、触发条件、触发方向和警报参数，使系统能够按照设定规则对相机画面进行持续分析。配置完成后，系统会根据警报规则对实时视频流进行智能检测。当画面中出现越界、进入、离开、人员聚集、人脸识别、物体检测、视频动态、热力变化或人群异常等事件时，平台会自动生成警报记录，并联动实时视图、通知中心、警报详情和后续处置流程，帮助用户快速发现异常、定位事件来源并完成处理闭环。",
     "tags": [
@@ -1388,7 +1388,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "通知列表用于集中查看、筛选、分类和处理平台生成的警报记录。系统中的警报事件触发后，会自动写入通知列表，用户可通过该页面查看事件类型、发生时间、触发相机、事件位置、警报等级和当前处理状态等信息。当警报记录进入通知列表后，用户可以从实时提醒转入详情查看，进一步核查警报前后的视频片段、AI 检测结果和事件信息。该页面适合用于集中查看事件、筛选优先级、追踪处理进度和管理警报状态，是从“实时警报提示”进入“事件核查处理”的主要入口。通知列表不仅用于展示警报记录，也承担事件分流和处理跟踪的作用。用户可通过搜索、筛选、自动刷新和详情查看等功能，快速定位目标通知，并根据事件严重程度决定是否进入详情页面进行确认、备注、分类或关闭处理。",
     "tags": [
@@ -1432,7 +1432,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "通知中心用于集中展示系统产生的警报通知、事件提醒和处理状态信息。用户可在该页面查看不同相机、不同区域、不同时间产生的通知记录，并通过搜索、筛选、详情查看、状态确认等功能，快速定位目标事件，了解事件当前状态和处理结果。",
     "tags": [
@@ -1471,7 +1471,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "通知详情用于查看单条通知或警报事件的完整信息，是用户从通知列表进入事件核查与处理的核心页面。用户在通知列表中点击“查看”后，系统会弹出通知详情窗口，集中展示事件基础信息、关联相机视频片段、AI 检测标注、警报状态、备注记录和处理操作入口，帮助用户快速判断事件真实性并完成确认处理。",
     "tags": [
@@ -1510,7 +1510,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "管理员",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "设置模块用于统一维护 POLYTRON ONE 的系统显示、用户账号、角色权限、存储策略和系统日志等基础配置，是平台日常运维和权限管理的重要入口。管理员可通过该模块完成系统参数调整、用户账户维护、角色权限分配、资源访问控制和操作记录查看等工作。该模块主要面向具备管理权限的用户使用。由于设置模块中的部分配置会影响其他用户可见页面、可访问相机资源、录像保存策略、日志保留周期和系统运行方式，因此在修改配置前，应先确认变更影响范围，避免因配置不当导致用户无法访问页面、相机资源不可见、录像策略异常或权限分配错误。通过设置模块，平台可以实现系统基础参数统一管理、账号与权限分级控制、存储与日志策略维护，以及运维问题追踪，为平台安全运行、权限管控和日常维护提供基础支撑。",
     "tags": [
@@ -1554,7 +1554,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "系统设置用于维护 POLYTRON ONE 平台的基础运行参数、显示配置、账户安全、存储策略和日志保留规则。管理员可根据实际部署环境、服务器资源情况和项目使用需求，对系统显示方式、账户信息、录像保存周期、日志保留周期、本地存储进行统一配置。",
     "tags": [
@@ -1617,7 +1617,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "账号设置用于统一管理 POLYTRON ONE 平台中的用户账号信息，包括用户列表查看、用户角色分配、账号新增、账号编辑、密码状态管理以及账号权限维护等功能。管理员可通过该页面查看当前系统中已创建的用户账号、对应角色、登录凭证状态和编辑入口，并根据实际管理需求对用户信息进行新增、调整或维护。",
     "tags": [
@@ -1680,7 +1680,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "用户角色设置用于管理平台中的角色类型、角色基础信息、功能权限和资源权限，是平台实现分级权限控制的重要模块。管理员可在该页面创建、编辑和维护不同用户角色，并根据岗位职责为角色分配对应的功能访问权限和相机资源权限，从而控制不同用户在系统中的可访问页面、可操作功能和可查看资源范围。",
     "tags": [
@@ -1743,7 +1743,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "11.1",
+    "version": "11.2",
     "readingTime": 1,
     "summary": "系统日志用于集中记录 POLYTRON ONE 平台运行过程中产生的系统事件、设备状态变化、用户操作、用户登录、录像任务以及异常信息。管理员和运维人员可通过系统日志页面查看系统运行记录，追踪设备连接状态、录像状态、用户行为和系统异常，为平台日常维护、安全管理、故障分析和操作审计提供依据。",
     "tags": [
@@ -1782,7 +1782,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 4,
     "summary": "在正式值守前完成账号、浏览器、相机、录像、AI 检测和通知链路检查，确保 POLYTRON ONE 已具备完整的监控与事件处置能力。",
     "tags": [
@@ -1812,7 +1812,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 4,
     "summary": "说明访问 POLYTRON ONE 所需的浏览器、网络、视频接入、设备时间和存储条件，并提供上线前兼容性检查建议。",
     "tags": [
@@ -1842,7 +1842,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 7,
     "summary": "按登录、权限、实时视频、录像、AI 警报、通知和导出问题分类排查常见异常，并明确升级给管理员时需要提供的信息。",
     "tags": [
@@ -1872,7 +1872,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 5,
     "summary": "定义高、中、低等级警报的判断原则、推荐响应顺序、升级条件和处理记录要求，帮助值班人员统一处置标准。",
     "tags": [
@@ -1902,7 +1902,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 6,
     "summary": "说明从事件定位、录像核查、裁剪导出到文件命名、完整性确认和安全保存的推荐流程，帮助用户形成可追溯的证据留存记录。",
     "tags": [
@@ -1932,7 +1932,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 7,
     "summary": "说明账号最小权限、共享终端使用、录像与日志保留、敏感数据导出和人员离场后的权限回收原则。",
     "tags": [
@@ -1963,7 +1963,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "产品运营",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 8,
     "summary": "集中回答账号、权限、相机、录像、AI 警报、通知、导出和系统使用中的高频问题，并链接到对应的详细文档。",
     "tags": [
@@ -1998,7 +1998,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 2,
     "summary": "POLYTRON ONE is an integrated platform for smart security and video intelligent management scenarios, supporting camera access management, real-time video preview, AI event detection, alarm linkage processing, video playback retrieval, and system configuration management.\nBy unified access to multiple video resources and combined with AI video analysis capabilities, the platform achieves intelligent identification and continuous monitoring of people, vehicles, areas, behaviors and equipment status. When the system detects an abnormal event, it can automatically trigger an alarm and link real-time images, notification centers, video clips and event details to form a complete closed loop from \"video access - intelligent detection - alarm triggering - event handling - video traceability\".\n\nThis document is intended for users of the POLYTRON ONE platform. It organizes content according to actual usage paths such as login, real-time preview, camera management, alarm settings, notification center, video playback, and system configuration. It helps users quickly understand platform capabilities, master page operations, and complete daily video management and intelligent alarm handling.",
     "tags": [
@@ -2056,7 +2056,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "The User Authentication module describes the login access, credential saving and password retrieval process.\nThis chapter focuses on the common actions taken by users to enter POLYTRON ONE, and is suitable for reference when logging in for the first time, logging in daily, and retrieving passwords. Users can use this chapter to learn about the login method for the account assigned by the platform manufacturer, the user and permission maintenance entrance after login, and the password recovery process.",
     "tags": [
@@ -2091,7 +2091,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 2,
     "summary": "Login is the standard entrance for users to enter the POLYTRON ONE platform and is used to complete user identity verification and permission identification. Users need to log in using the username and password assigned by the platform manufacturer or system administrator. After the system is verified, the corresponding accessible pages, camera resources and operation functions will be displayed according to the role permissions bound to the account.",
     "tags": [
@@ -2152,7 +2152,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Customer service support",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "Forgot password is used to help users complete identity verification and reset their login password by binding their email address when they are unable to log in to POLYTRON ONE with their original password. This function is suitable for scenarios such as users forgetting their passwords, losing their passwords due to not logging in for a long time, losing their password records, or unable to access their accounts normally.",
     "tags": [
@@ -2208,7 +2208,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.8",
+    "version": "10.9",
     "readingTime": 1,
     "summary": "The homepage focuses on displaying the current operating status of the platform, device access status, resource usage and an overview of alarm events. After users enter the system, they usually first quickly understand the overall status of the platform through the homepage, including the total number of cameras, online/offline number, system resource usage, storage usage, and current alarm processing progress. The homepage integrates devices, resources and alarm events in the same view, helping users determine in a short time whether the platform is running normally, whether there are problems such as offline cameras, excessive server load or abnormal number of pending alarms. Through the homepage, users can quickly discover abnormal situations and further enter modules such as real-time preview, playback recording, camera management, notification center or system settings to view details and perform processing operations.",
     "tags": [
@@ -2252,7 +2252,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Operations and maintenance team",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "System information is used to view the resource usage of POLYTRON ONE's current server or operating environment, including key indicators such as CPU usage, memory usage, and disk usage. This module helps users quickly determine whether the operating status of the platform is stable, and provides basic reference for video loading, recording writing, alarm processing, and system operation and maintenance.",
     "tags": [
@@ -2301,7 +2301,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Security supervisor",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "The alarm overview is used to centrally display the number of alarms, pending events, and resolved events currently generated by the platform, helping users quickly understand the overall handling of abnormal events in the system. Users can use this area to determine whether there are currently alarm events that require priority attention, and further enter the notification list or alarm details page for viewing and processing.",
     "tags": [
@@ -2350,7 +2350,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Operations and maintenance team",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "Camera information is used to view the overall number, online number, and offline number of cameras currently connected to POLYTRON ONE, helping users quickly understand the access scale and operating status of camera equipment within the platform. This module is usually displayed on the homepage or system overview area and is an important entrance for users to determine whether the video system is running normally.",
     "tags": [
@@ -2399,7 +2399,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.6",
+    "version": "10.7",
     "readingTime": 1,
     "summary": "The top toolbar is used to host the global operation entrance of the platform, helping users complete basic operations such as theme switching, system setting access, and account logout on any functional page. This area is usually displayed fixedly at the top of the page, allowing users to quickly perform system-level operations unrelated to the current business page without returning to the home page.",
     "tags": [
@@ -2443,7 +2443,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "Real-time view is used to help users organize and view real-time camera monitoring images. It is the most commonly used functional module in daily security duty, on-site observation and alarm event response. Users can create independent tabs based on different areas, task scenarios or monitoring targets, and centrally view multi-channel camera videos through single-screen or multi-screen grid layouts.\n\nIn the real-time view, users can not only view camera images, but also perform operations such as snapshots, full-screen viewing, video analysis, PTZ control, and 3D scene linkage on the camera. When the system detects an abnormal event or triggers an alarm, a clear prompt will be generated on the corresponding camera screen to help users quickly locate the location of the event and enter the subsequent processing process.\nThis module is suitable for scenarios such as security duty, key area monitoring, park inspections, floor monitoring, alarm verification, and emergency response.",
     "tags": [
@@ -2482,7 +2482,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Security supervisor",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "Camera selection is used to search, add, remove, clear or automatically fill camera images in the real-time view, helping users quickly build the desired surveillance layout. When configuring the real-time monitoring screen, the user needs to first select the target grid, then add the corresponding camera to the specified location, and the system will load the corresponding real-time video screen in the grid.",
     "tags": [
@@ -2538,7 +2538,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "The grid is used to configure the video screen layout of the real-time preview page, determining how many camera images the user can view simultaneously on the same screen, and whether key images need to be enlarged for display. By selecting different grid layouts, users can flexibly switch between single-image, multiple-image or key image viewing methods based on monitoring tasks, number of cameras and screen size.",
     "tags": [
@@ -2582,7 +2582,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 2,
     "summary": "View operations are used to perform common control operations on the video screen in the real-time preview page, including snapshot saving, sub-stream switching, video analysis viewing, full-screen display, recording status viewing, multi-view control and Camera Information viewing, etc. This area helps users quickly complete screen confirmation, evidence retention, mode switching and video status judgment while watching real-time video.",
     "tags": [
@@ -2631,7 +2631,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Equipment Engineering",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "PTZ control is used to remotely operate cameras that support the PTZ function. Users can adjust the camera's viewing direction, movement speed, zoom, focus, aperture and other parameters on the real-time preview page. This function is suitable for scenes where you need to track moving targets, zoom in to view distant details, adjust the surveillance perspective, or optimize picture clarity.",
     "tags": [
@@ -2675,7 +2675,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.6",
+    "version": "10.7",
     "readingTime": 1,
     "summary": "Tag management is used to classify and organize and quickly switch monitoring pages in real-time view. Users can create multiple real-time view tags based on different areas, different tasks or different monitoring scenarios, and configure independent camera combinations and grid layouts in each tag.",
     "tags": [
@@ -2730,7 +2730,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Equipment Engineering",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "The control panel is used to configure and manage POLYTRON 360° camera features such as multi-view displays, rotation strategies, viewing angle ranges, position saving, and preview updates. Users can control how the 360° camera is displayed in the live view through this panel, allowing the image to be flexibly switched between fixed observation, automatic cruise and multi-directional viewing.",
     "tags": [
@@ -2781,7 +2781,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "11.3",
+    "version": "11.4",
     "readingTime": 5,
     "summary": "The Playback workspace combines intelligent search and historical video review. Users can describe a target with text, voice, or an attachment, limit the camera scope and time range, set a match threshold, and open the results directly in single-camera, multi-camera, or timeline playback.",
     "tags": [
@@ -2825,7 +2825,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "11.3",
+    "version": "11.4",
     "readingTime": 5,
     "summary": "Use the same workspace to limit the search scope, select cameras, and review historical recordings in single, four, or nine-camera layouts.",
     "tags": [
@@ -2870,7 +2870,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "11.3",
+    "version": "11.4",
     "readingTime": 5,
     "summary": "The intelligent result list shows the thumbnail, camera, location, timestamp, and confidence for matched recordings, with direct preview, sorting, pagination, and result cleanup.",
     "tags": [
@@ -2915,7 +2915,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "11.3",
+    "version": "11.4",
     "readingTime": 5,
     "summary": "Timeline is a page-level Playback view alongside Grid. It presents intelligent-search matches as horizontal time nodes and shows the selected result's event details, confidence, description, and annotated frame.",
     "tags": [
@@ -2965,7 +2965,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Security supervisor",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "The alarm trigger module is used to explain how the platform performs real-time prompts, notification writing, video clip generation and subsequent processing when the system detects an abnormal event. This module covers the complete process from video analysis rules triggering alarms to users viewing notifications, checking video clips, supplementing event information and completing processing, helping users understand the generation, display and processing logic of alarm events in the system.\n\nWhen video analysis rules are enabled on a camera, the system will continue to detect real-time images. If an abnormal event that complies with the rules occurs on the screen, such as people crossing the line, wandering, falling, unauthorized entry, gathering of people or abnormal behavior, etc., the system will automatically generate an alarm record and display relevant information simultaneously in the real-time view, notification list and alarm details. Users can use these portals to quickly locate the source of the event, view the associated camera footage, and determine whether further processing is required.\n\nThis module is suitable for scenarios such as security guarding, abnormal event reminders, video verification, alarm classification, event tracking and closed-loop processing. It is a key link for the platform to move from \"intelligent detection\" to \"manual confirmation and processing\".",
     "tags": [
@@ -3016,7 +3016,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "The alarm triggering process is used to describe how the system generates an alarm when camera video analysis detects an abnormal event, and simultaneously updates related page information such as real-time view, notification center, and alarm details. This process covers the complete path from the triggering of AI detection rules, real-time screen prompts, and notification record generation to the user entering details to view video clips and completing alarm processing.",
     "tags": [
@@ -3055,7 +3055,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "View alarm details is used to display the complete information and associated video clips of a single alarm record, helping users to verify, confirm and follow-up processing of alarm events. After the user clicks on the alarm record in the alarm list or notification list, the system will enter the details pop-up window or details page, which focuses on displaying the alarm type, alarm time, associated camera, event location, recognition results, processing status, and video clips before and after the alarm is triggered.",
     "tags": [
@@ -3105,7 +3105,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Operations and maintenance team",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "The camera module is used to centrally maintain camera device information, real-time 3D addresses, recording plans and alarm rules in the platform. As the core video resource of the POLYTRON ONE platform, the camera's device information accuracy will directly affect real-time viewing, video playback, AI alarm recognition, 3D scene linkage, and user permission access scope. Through the camera module, users can centrally manage connected devices, including viewing and editing the camera name, installation location, group, connection status, video stream address, real-time 3D address, recording schedule, alarm configuration, etc. Based on these device data, the platform will associate the camera with real-time preview, playback retrieval, notification center, alarm details, role permissions and 3D scenes to ensure that video resources can be correctly called and managed. This module is mainly intended for administrators, operation and maintenance personnel, and users with device management rights. It is used to complete camera access, information maintenance, recording policy configuration, alarm rule configuration, and resource permission allocation.",
     "tags": [
@@ -3144,7 +3144,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "Camera management is used to uniformly maintain the data of connected camera equipment in the system. It is the basic module of the platform for real-time preview, video playback, AI alarm recognition, 3D scene linkage and permission resource allocation. Users can view the current running status of the camera through this page, and manage the camera's basic information, installation location, network parameters, video stream address, encoding parameters and image configuration.",
     "tags": [
@@ -3210,7 +3210,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.6",
+    "version": "10.7",
     "readingTime": 2,
     "summary": "The recording plan is used to configure the recording time, recording period and recording strategy for the specified camera, helping users to flexibly manage recording resources according to different business scenarios. Users can set plans for the camera such as all-day recording, working time recording, non-working time recording, key period recording or divided period recording, so that the system can automatically perform recording tasks according to preset rules.",
     "tags": [
@@ -3262,7 +3262,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "Alarm settings are used to configure AI video analysis rules and alarm triggering rules for designated cameras. It is the core configuration module for the platform to achieve intelligent identification, active warning, and event linkage. Users can draw detection areas or detection lines in the real-time image, and select the corresponding detection algorithm, scheduling time, trigger conditions, trigger direction and alarm parameters, so that the system can continuously analyze the camera images according to the set rules. After the configuration is completed, the system will intelligently detect the real-time video stream according to the alarm rules. When events such as boundary crossing, entry, departure, gathering of people, face recognition, object detection, video dynamics, heat changes, or crowd abnormalities occur in the screen, the platform will automatically generate an alarm record and link the real-time view, notification center, alarm details, and subsequent disposal processes to help users quickly discover abnormalities, locate the source of the event, and complete the closed loop processing.",
     "tags": [
@@ -3320,7 +3320,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "The notification list is used to centrally view, filter, classify and process alert records generated by the platform. After an alarm event in the system is triggered, it will be automatically written into the notification list. Users can view information such as event type, occurrence time, trigger camera, event location, alarm level, and current processing status through this page. When the alarm record enters the notification list, users can switch from real-time reminder to detailed view to further check the video clips, AI detection results and event information before and after the alarm. This page is suitable for centralized viewing of events, filtering priorities, tracking processing progress and managing alarm status. It is the main entrance from \"Real-time Alarm Prompt\" to \"Event Verification and Processing\". The notification list is not only used to display alarm records, but also plays the role of event diversion and processing tracking. Users can quickly locate target notifications through functions such as search, filtering, automatic refresh, and detail viewing, and decide whether to enter the details page for confirmation, notes, classification, or close processing based on the severity of the event.",
     "tags": [
@@ -3364,7 +3364,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "The notification center is used to centrally display alarm notifications, event reminders and processing status information generated by the system. Users can view notification records generated by different cameras, different areas, and different times on this page, and quickly locate target events and understand the current status and processing results of the event through functions such as search, filtering, detailed viewing, and status confirmation.",
     "tags": [
@@ -3403,7 +3403,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "Notification details are used to view the complete information of a single notification or alarm event. It is the core page for users to enter event verification and processing from the notification list. After the user clicks \"View\" in the notification list, the system will pop up the notification details window, which displays the basic information of the event, associated camera video clips, AI detection annotations, alarm status, note records, and processing operation entry to help users quickly determine the authenticity of the event and complete the confirmation process.",
     "tags": [
@@ -3442,7 +3442,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "administrator",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "The settings module is used to uniformly maintain basic configurations such as POLYTRON ONE's system display, user accounts, role permissions, storage policies, and system logs. It is an important entrance to the daily operation and maintenance and permission management of the platform. Administrators can use this module to complete system parameter adjustment, user account maintenance, role permission assignment, resource access control, and operation record viewing. This module is mainly intended for users with administrative rights. Since some configurations in the settings module will affect pages visible to other users, accessible camera resources, video storage policies, log retention periods, and system operation methods, before modifying the configuration, you should first confirm the scope of the change to avoid users being unable to access pages, camera resources being invisible, recording policy exceptions, or permission assignment errors due to improper configuration. By setting up modules, the platform can realize unified management of basic system parameters, hierarchical control of accounts and permissions, maintenance of storage and log policies, and tracking of operation and maintenance issues, providing basic support for safe operation, permission control, and daily maintenance of the platform.",
     "tags": [
@@ -3486,7 +3486,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "System settings are used to maintain the basic operating parameters, display configuration, account security, storage policies and log retention rules of the POLYTRON ONE platform. Administrators can uniformly configure the system display mode, account information, video storage period, log retention period, and local storage based on the actual deployment environment, server resources, and project usage requirements.",
     "tags": [
@@ -3549,7 +3549,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "Account settings are used to uniformly manage user account information in the POLYTRON ONE platform, including functions such as user list viewing, user role assignment, account addition, account editing, password status management, and account permission maintenance. Administrators can use this page to view the user accounts, corresponding roles, login credential status and editing entries that have been created in the current system, and add, adjust or maintain user information according to actual management needs.",
     "tags": [
@@ -3605,7 +3605,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "User role setting is used to manage role types, basic role information, functional permissions and resource permissions in the platform. It is an important module for the platform to achieve hierarchical permission control. Administrators can create, edit, and maintain different user roles on this page, and assign corresponding function access permissions and camera resource permissions to roles based on job responsibilities, thereby controlling the accessible pages, operable functions, and viewable resource ranges of different users in the system.",
     "tags": [
@@ -3668,7 +3668,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product operations",
     "updatedAt": "2026-07-24",
-    "version": "10.7",
+    "version": "10.8",
     "readingTime": 1,
     "summary": "System logs are used to centrally record system events, device status changes, user operations, user logins, recording tasks, and abnormal information generated during the operation of the POLYTRON ONE platform. Administrators and operation and maintenance personnel can view system operation records through the system log page, track device connection status, recording status, user behavior and system abnormalities, providing a basis for daily platform maintenance, security management, fault analysis and operation auditing.",
     "tags": [
@@ -3707,7 +3707,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product Operations",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 4,
     "summary": "Validate the account, browser, cameras, recordings, AI detection, and notification workflow before the first operational shift.",
     "tags": [
@@ -3742,7 +3742,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product Operations",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 4,
     "summary": "Review the browser, network, video access, time synchronization, and storage conditions required to operate POLYTRON ONE.",
     "tags": [
@@ -3782,7 +3782,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product Operations",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 7,
     "summary": "Troubleshoot common login, permission, live video, recording, AI alarm, notification, playback, and export issues by workflow stage.",
     "tags": [
@@ -3827,7 +3827,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product Operations",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 5,
     "summary": "Apply consistent alarm prioritization, escalation, and handling records while keeping project-specific response policies authoritative.",
     "tags": [
@@ -3867,7 +3867,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product Operations",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 6,
     "summary": "Follow a traceable workflow from event location and recording review through clipping, export verification, naming, and secure retention.",
     "tags": [
@@ -3907,7 +3907,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product Operations",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 7,
     "summary": "Apply least-privilege access, secure shared workstations, control exports, and define recording, alarm, and log retention by project policy.",
     "tags": [
@@ -3948,7 +3948,7 @@ export const initialDocs: DocPage[] = [
     "status": "Published",
     "owner": "Product Operations",
     "updatedAt": "2026-07-24",
-    "version": "1.3",
+    "version": "1.4",
     "readingTime": 8,
     "summary": "Find answers to common questions about accounts, permissions, cameras, recordings, AI alarms, notifications, exports, and support information.",
     "tags": [
