@@ -2270,7 +2270,9 @@ progress::-webkit-progress-value {
 
 .docs-nav {
   display: grid;
+  align-content: start;
   flex: 1 1 auto;
+  grid-auto-rows: max-content;
   gap: 3px;
   min-height: 0;
   overflow-y: auto;
