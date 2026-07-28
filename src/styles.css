@@ -2186,7 +2186,7 @@ progress::-webkit-progress-value {
   top: 0;
   align-self: start;
   height: 100vh;
-  overflow: auto;
+  overflow: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
   padding: 34px 16px 28px 24px;
@@ -2262,16 +2262,29 @@ progress::-webkit-progress-value {
 .docs-sidebar-inner {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 62px);
+  height: 100%;
+  min-height: 0;
   width: min(248px, 100%);
   margin-left: auto;
 }
 
 .docs-nav {
   display: grid;
+  flex: 1 1 auto;
   gap: 3px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: 12px;
   color: #6f6f6f;
   font-size: 14px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.docs-nav::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .language-select {
@@ -2297,8 +2310,11 @@ progress::-webkit-progress-value {
 
 .docs-language-select {
   position: relative;
+  flex: 0 0 auto;
   width: 100%;
-  margin-top: auto;
+  margin-top: 10px;
+  padding-top: 8px;
+  background: #ffffff;
 }
 
 .docs-language-button {
@@ -3037,8 +3053,9 @@ progress::-webkit-progress-value {
 
   .docs-sidebar {
     position: static;
-    height: auto;
-    max-height: 420px;
+    height: 420px;
+    max-height: 100vh;
+    overflow: hidden;
     padding: 24px 20px 22px;
     border-right: 0;
     border-bottom: 1px solid #e5e7eb;
@@ -4472,21 +4489,19 @@ progress::-webkit-progress-value {
 .severity-matrix th:first-child { width: 62px; text-align: center; }
 
 .severity-badge {
-  display: grid;
-  width: 32px;
-  height: 32px;
-  margin: 0 auto;
-  place-items: center;
-  border-radius: 50%;
-  background: #eff6ff;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin: 0;
   color: #1c64f2;
   font-size: 12px;
   font-weight: 900;
+  white-space: nowrap;
 }
 
-.severity-matrix tbody tr:first-child .severity-badge { background: #fee4e2; color: #b42318; }
-.severity-matrix tbody tr:nth-child(2) .severity-badge { background: #fef0c7; color: #b54708; }
-.severity-matrix tbody tr:nth-child(3) .severity-badge { background: #eff6ff; color: #1c64f2; }
+.severity-matrix tbody tr:first-child .severity-badge { color: #b42318; }
+.severity-matrix tbody tr:nth-child(2) .severity-badge { color: #b54708; }
+.severity-matrix tbody tr:nth-child(3) .severity-badge { color: #1c64f2; }
 
 .severity-escalation,
 .status-rule {
