@@ -156,15 +156,6 @@ const publicDocVersions: Array<{ code: PublicDocVersion; label: string }> = [
   { code: "v1", label: "V1" },
   { code: "v2", label: "V2" },
 ];
-const V2_TO_V1_PLAYBACK_ROUTES: Record<string, string> = {
-  "/docs/playback": "/docs/v1/playback",
-  "/docs/playback/grid-layout": "/docs/v1/playback/grid-layout",
-  "/docs/playback/list-layout": "/docs/v1/playback/list-layout",
-  "/docs/playback/player-controls": "/docs/v1/playback/player-controls",
-};
-const V1_TO_V2_PLAYBACK_ROUTES: Record<string, string> = Object.fromEntries(
-  Object.entries(V2_TO_V1_PLAYBACK_ROUTES).map(([v2Route, v1Route]) => [v1Route, v2Route])
-);
 
 type PublishConfig = {
   endpoint: string;
@@ -1172,6 +1163,30 @@ function routeBase(route: string) {
 function routeForLocale(route: string, locale: DocLocale) {
   const baseRoute = routeBase(route);
   return `/${locale}${baseRoute}`;
+}
+
+function v1RouteBaseForV2(route: string) {
+  const baseRoute = routeBase(route);
+  if (baseRoute === "/docs/v1" || baseRoute.startsWith("/docs/v1/")) return baseRoute;
+  return baseRoute.replace(/^\/docs(?=\/|$)/, "/docs/v1");
+}
+
+function v2RouteBaseForV1(route: string) {
+  return routeBase(route).replace(/^\/docs\/v1(?=\/|$)/, "/docs");
+}
+
+const legacyV1RouteBases = new Set(legacyV1Docs.map((doc) => routeBase(doc.route)));
+
+function nearestLegacyV1Route(route: string) {
+  let candidate = v1RouteBaseForV2(route);
+
+  while (candidate === "/docs/v1" || candidate.startsWith("/docs/v1/")) {
+    if (legacyV1RouteBases.has(candidate)) return candidate;
+    if (candidate === "/docs/v1") break;
+    candidate = candidate.slice(0, candidate.lastIndexOf("/"));
+  }
+
+  return "/docs/v1";
 }
 
 function localeFromPath(pathname: string): DocLocale {
@@ -4749,7 +4764,14 @@ function docForPath(pathname: string, docs: DocPage[], locale: DocLocale) {
 
 function isDocsHomePath(pathname: string) {
   const normalized = normalizeRoute(pathname);
-  return normalized === "/docs" || normalized === "/zh/docs" || normalized === "/en/docs";
+  return (
+    normalized === "/docs" ||
+    normalized === "/zh/docs" ||
+    normalized === "/en/docs" ||
+    normalized === "/docs/v1" ||
+    normalized === "/zh/docs/v1" ||
+    normalized === "/en/docs/v1"
+  );
 }
 
 const NODE_NAV_HEADING_PATTERNS: Record<DocLocale, RegExp> = {
@@ -6096,9 +6118,11 @@ function SupplementalVisuals({ doc }: { doc: DocPage }) {
 function PublicDocsApp() {
   const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
   const currentLocale = localeFromPath(currentPath);
-  const currentVersion: PublicDocVersion = routeBase(currentPath).startsWith("/docs/v1/")
-    ? "v1"
-    : "v2";
+  const currentBaseRoute = routeBase(currentPath);
+  const currentVersion: PublicDocVersion =
+    currentBaseRoute === "/docs/v1" || currentBaseRoute.startsWith("/docs/v1/")
+      ? "v1"
+      : "v2";
   const publicDocs = docsForLocale(
     currentVersion === "v1" ? legacyV1Docs : initialEditorDocs,
     currentLocale
@@ -6142,7 +6166,7 @@ function PublicDocsApp() {
   const activeLocale = docLocales.find((locale) => locale.code === currentLocale) ?? docLocales[0];
   const brandRoute =
     currentVersion === "v1"
-      ? routeForLocale("/docs/v1/playback", currentLocale)
+      ? routeForLocale("/docs/v1", currentLocale)
       : routeForLocale("/docs", currentLocale);
   const normalizedQuery = query.trim().toLowerCase();
   const visibleGroups = groupedDocs
@@ -6265,9 +6289,7 @@ function PublicDocsApp() {
     if (nextVersion === currentVersion) return normalizeRoute(currentPath);
 
     if (nextVersion === "v1") {
-      const v2BaseRoute = routeBase(currentPath);
-      const v1Route = V2_TO_V1_PLAYBACK_ROUTES[v2BaseRoute] ?? "/docs/v1/playback";
-      return routeForLocale(v1Route, currentLocale);
+      return routeForLocale(nearestLegacyV1Route(currentPath), currentLocale);
     }
 
     let savedV2Route = "";
@@ -6281,15 +6303,17 @@ function PublicDocsApp() {
     }
 
     const normalizedSavedRoute = normalizeRoute(savedV2Route);
+    const savedV2BaseRoute = routeBase(normalizedSavedRoute);
     const canRestoreSavedRoute =
       Boolean(savedV2Route) &&
       isDocsRoute(normalizedSavedRoute) &&
-      !routeBase(normalizedSavedRoute).startsWith("/docs/v1/");
+      savedV2BaseRoute !== "/docs/v1" &&
+      !savedV2BaseRoute.startsWith("/docs/v1/");
     const v1BaseRoute = routeBase(currentPath);
     const isStillOnLandingRoute =
       Boolean(savedV1LandingRoute) &&
       routeBase(savedV1LandingRoute) === v1BaseRoute;
-    const directV2Route = V1_TO_V2_PLAYBACK_ROUTES[v1BaseRoute] ?? "/docs/playback";
+    const directV2Route = v2RouteBaseForV1(v1BaseRoute);
     const v2Route =
       canRestoreSavedRoute && isStillOnLandingRoute ? normalizedSavedRoute : directV2Route;
 
