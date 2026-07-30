@@ -71,6 +71,7 @@ import {
 } from "react";
 import { categories, DocMediaAsset, DocPage, DocStatus, initialDocs } from "./data";
 import type { DocSection } from "./data";
+import { legacyV1Docs } from "./legacyV1Data";
 
 const STORAGE_KEY = "polytron-doc-admin-state-v7";
 const STORAGE_SOURCE_KEY = "polytron-doc-admin-source-signature-v1";
@@ -147,6 +148,13 @@ type MediaDrafts = Record<MediaType, MediaDraft>;
 
 type PublishScope = "current" | "all";
 type DocLocale = "zh" | "en";
+type PublicDocVersion = "v1" | "v2";
+
+const PUBLIC_V2_RETURN_ROUTE_KEY = "polytron-doc-public-v2-return-route-v1";
+const publicDocVersions: Array<{ code: PublicDocVersion; label: string }> = [
+  { code: "v1", label: "V1" },
+  { code: "v2", label: "V2" },
+];
 
 type PublishConfig = {
   endpoint: string;
@@ -6078,7 +6086,13 @@ function SupplementalVisuals({ doc }: { doc: DocPage }) {
 function PublicDocsApp() {
   const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
   const currentLocale = localeFromPath(currentPath);
-  const publicDocs = docsForLocale(initialEditorDocs, currentLocale);
+  const currentVersion: PublicDocVersion = routeBase(currentPath).startsWith("/docs/v1/")
+    ? "v1"
+    : "v2";
+  const publicDocs = docsForLocale(
+    currentVersion === "v1" ? legacyV1Docs : initialEditorDocs,
+    currentLocale
+  );
   const selectedDoc = docForPath(currentPath, publicDocs, currentLocale);
   const [query, setQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -6089,6 +6103,8 @@ function PublicDocsApp() {
   const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const languageMenuRef = useRef<HTMLDivElement>(null);
+  const [isVersionMenuOpen, setIsVersionMenuOpen] = useState(false);
+  const versionMenuRef = useRef<HTMLDivElement>(null);
   const [expandedNavGroups, setExpandedNavGroups] = useState<Set<string>>(
     () => new Set([selectedDoc.category])
   );
@@ -6102,6 +6118,7 @@ function PublicDocsApp() {
           sidebarToggleOpen: "Expand sidebar",
           sidebarToggleClose: "Collapse sidebar",
           sidebarSearch: "Open search",
+          versionMenuLabel: "Documentation version",
         }
       : {
           brandSubtitle: "功能说明文档",
@@ -6110,8 +6127,11 @@ function PublicDocsApp() {
           sidebarToggleOpen: "展开左侧菜单",
           sidebarToggleClose: "收起左侧菜单",
           sidebarSearch: "打开搜索",
+          versionMenuLabel: "文档版本",
         };
   const activeLocale = docLocales.find((locale) => locale.code === currentLocale) ?? docLocales[0];
+  const brandRoute =
+    currentVersion === "v1" ? selectedDoc.route : routeForLocale("/docs", currentLocale);
   const normalizedQuery = query.trim().toLowerCase();
   const visibleGroups = groupedDocs
     .map((group) => {
@@ -6176,6 +6196,27 @@ function PublicDocsApp() {
     };
   }, [isLanguageMenuOpen]);
 
+  useEffect(() => {
+    if (!isVersionMenuOpen) return;
+
+    function handlePointerDown(event: PointerEvent) {
+      if (!versionMenuRef.current?.contains(event.target as Node)) {
+        setIsVersionMenuOpen(false);
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setIsVersionMenuOpen(false);
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isVersionMenuOpen]);
+
   const { html: anchoredContent, tocItems } = docContentWithAnchors(selectedDoc, publicDocs);
   const supplementalTocItems = supplementalTocByDocId[selectedDoc.id] ?? [];
   const docsContentRef = useRef<HTMLDivElement>(null);
@@ -6208,6 +6249,31 @@ function PublicDocsApp() {
     const nextRoute = routeForLocale(selectedDoc.route, nextLocale);
     navigateToDoc(nextRoute);
   };
+  const routeForPublicVersion = (nextVersion: PublicDocVersion) => {
+    if (nextVersion === currentVersion) return normalizeRoute(currentPath);
+
+    if (nextVersion === "v1") {
+      return routeForLocale("/docs/v1/playback/player-controls", currentLocale);
+    }
+
+    let savedV2Route = "";
+    try {
+      savedV2Route = window.sessionStorage.getItem(PUBLIC_V2_RETURN_ROUTE_KEY) ?? "";
+    } catch {
+      // Use the V2 playback page when browser storage is unavailable.
+    }
+
+    const normalizedSavedRoute = normalizeRoute(savedV2Route);
+    const canRestoreSavedRoute =
+      Boolean(savedV2Route) &&
+      isDocsRoute(normalizedSavedRoute) &&
+      !routeBase(normalizedSavedRoute).startsWith("/docs/v1/");
+    const v2Route = canRestoreSavedRoute
+      ? normalizedSavedRoute
+      : "/docs/playback/player-controls";
+
+    return routeForLocale(v2Route, currentLocale);
+  };
   const handleDocLinkClick = (event: MouseEvent<HTMLElement>, route: string) => {
     if (
       event.defaultPrevented ||
@@ -6222,6 +6288,26 @@ function PublicDocsApp() {
 
     event.preventDefault();
     navigateToDoc(route);
+  };
+  const handlePublicVersionClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    nextVersion: PublicDocVersion
+  ) => {
+    setIsVersionMenuOpen(false);
+    if (nextVersion === currentVersion) {
+      event.preventDefault();
+      return;
+    }
+
+    if (currentVersion === "v2" && nextVersion === "v1") {
+      try {
+        window.sessionStorage.setItem(PUBLIC_V2_RETURN_ROUTE_KEY, normalizeRoute(currentPath));
+      } catch {
+        // The V1 page remains reachable even when browser storage is unavailable.
+      }
+    }
+
+    handleDocLinkClick(event, routeForPublicVersion(nextVersion));
   };
   const handleContentClick = (event: MouseEvent<HTMLDivElement>) => {
     const target = event.target;
@@ -6304,14 +6390,67 @@ function PublicDocsApp() {
           ) : (
             <div className="docs-sidebar-inner">
               <div className="docs-sidebar-header">
-                <a
-                  className="docs-brand"
-                  href={routeForLocale("/docs", currentLocale)}
-                  onClick={(event) => handleDocLinkClick(event, routeForLocale("/docs", currentLocale))}
-                >
-                  <strong>POLYTRON ONE</strong>
-                  <span>{publicCopy.brandSubtitle}</span>
-                </a>
+                <div className="docs-brand-block">
+                  <div className="docs-brand-title-row">
+                    <a
+                      className="docs-brand"
+                      href={brandRoute}
+                      onClick={(event) => handleDocLinkClick(event, brandRoute)}
+                    >
+                      <strong>POLYTRON ONE</strong>
+                    </a>
+                    <div className="docs-version-select" ref={versionMenuRef}>
+                      <button
+                        aria-expanded={isVersionMenuOpen}
+                        aria-haspopup="listbox"
+                        aria-label={publicCopy.versionMenuLabel}
+                        className="docs-version-button"
+                        onClick={() => {
+                          setIsLanguageMenuOpen(false);
+                          setIsVersionMenuOpen((open) => !open);
+                        }}
+                        type="button"
+                      >
+                        <span>{currentVersion.toUpperCase()}</span>
+                        <ChevronDown size={13} strokeWidth={1.8} />
+                      </button>
+                      {isVersionMenuOpen && (
+                        <div
+                          aria-label={publicCopy.versionMenuLabel}
+                          className="docs-version-menu"
+                          role="listbox"
+                        >
+                          <span className="docs-version-menu-title">
+                            {publicCopy.versionMenuLabel}
+                          </span>
+                          {publicDocVersions.map((version) => (
+                            <a
+                              aria-selected={currentVersion === version.code}
+                              className={`docs-version-option ${
+                                currentVersion === version.code ? "active" : ""
+                              }`}
+                              href={routeForPublicVersion(version.code)}
+                              key={version.code}
+                              onClick={(event) =>
+                                handlePublicVersionClick(event, version.code)
+                              }
+                              role="option"
+                            >
+                              {version.label}
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <a
+                    className="docs-brand-subtitle"
+                    href={brandRoute}
+                    onClick={(event) => handleDocLinkClick(event, brandRoute)}
+                  >
+                    {publicCopy.brandSubtitle}
+                  </a>
+                </div>
                 <button
                   aria-expanded
                   aria-label={sidebarToggleLabel}
@@ -6408,7 +6547,10 @@ function PublicDocsApp() {
                   aria-expanded={isLanguageMenuOpen}
                   aria-haspopup="listbox"
                   className="docs-language-button"
-                  onClick={() => setIsLanguageMenuOpen((open) => !open)}
+                  onClick={() => {
+                    setIsVersionMenuOpen(false);
+                    setIsLanguageMenuOpen((open) => !open);
+                  }}
                   type="button"
                 >
                   <Languages size={16} strokeWidth={1.8} />
