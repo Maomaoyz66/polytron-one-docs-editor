@@ -151,10 +151,20 @@ type DocLocale = "zh" | "en";
 type PublicDocVersion = "v1" | "v2";
 
 const PUBLIC_V2_RETURN_ROUTE_KEY = "polytron-doc-public-v2-return-route-v1";
+const PUBLIC_V1_LANDING_ROUTE_KEY = "polytron-doc-public-v1-landing-route-v1";
 const publicDocVersions: Array<{ code: PublicDocVersion; label: string }> = [
   { code: "v1", label: "V1" },
   { code: "v2", label: "V2" },
 ];
+const V2_TO_V1_PLAYBACK_ROUTES: Record<string, string> = {
+  "/docs/playback": "/docs/v1/playback",
+  "/docs/playback/grid-layout": "/docs/v1/playback/grid-layout",
+  "/docs/playback/list-layout": "/docs/v1/playback/list-layout",
+  "/docs/playback/player-controls": "/docs/v1/playback/player-controls",
+};
+const V1_TO_V2_PLAYBACK_ROUTES: Record<string, string> = Object.fromEntries(
+  Object.entries(V2_TO_V1_PLAYBACK_ROUTES).map(([v2Route, v1Route]) => [v1Route, v2Route])
+);
 
 type PublishConfig = {
   endpoint: string;
@@ -6131,7 +6141,9 @@ function PublicDocsApp() {
         };
   const activeLocale = docLocales.find((locale) => locale.code === currentLocale) ?? docLocales[0];
   const brandRoute =
-    currentVersion === "v1" ? selectedDoc.route : routeForLocale("/docs", currentLocale);
+    currentVersion === "v1"
+      ? routeForLocale("/docs/v1/playback", currentLocale)
+      : routeForLocale("/docs", currentLocale);
   const normalizedQuery = query.trim().toLowerCase();
   const visibleGroups = groupedDocs
     .map((group) => {
@@ -6253,12 +6265,17 @@ function PublicDocsApp() {
     if (nextVersion === currentVersion) return normalizeRoute(currentPath);
 
     if (nextVersion === "v1") {
-      return routeForLocale("/docs/v1/playback/player-controls", currentLocale);
+      const v2BaseRoute = routeBase(currentPath);
+      const v1Route = V2_TO_V1_PLAYBACK_ROUTES[v2BaseRoute] ?? "/docs/v1/playback";
+      return routeForLocale(v1Route, currentLocale);
     }
 
     let savedV2Route = "";
+    let savedV1LandingRoute = "";
     try {
       savedV2Route = window.sessionStorage.getItem(PUBLIC_V2_RETURN_ROUTE_KEY) ?? "";
+      savedV1LandingRoute =
+        window.sessionStorage.getItem(PUBLIC_V1_LANDING_ROUTE_KEY) ?? "";
     } catch {
       // Use the V2 playback page when browser storage is unavailable.
     }
@@ -6268,9 +6285,13 @@ function PublicDocsApp() {
       Boolean(savedV2Route) &&
       isDocsRoute(normalizedSavedRoute) &&
       !routeBase(normalizedSavedRoute).startsWith("/docs/v1/");
-    const v2Route = canRestoreSavedRoute
-      ? normalizedSavedRoute
-      : "/docs/playback/player-controls";
+    const v1BaseRoute = routeBase(currentPath);
+    const isStillOnLandingRoute =
+      Boolean(savedV1LandingRoute) &&
+      routeBase(savedV1LandingRoute) === v1BaseRoute;
+    const directV2Route = V1_TO_V2_PLAYBACK_ROUTES[v1BaseRoute] ?? "/docs/playback";
+    const v2Route =
+      canRestoreSavedRoute && isStillOnLandingRoute ? normalizedSavedRoute : directV2Route;
 
     return routeForLocale(v2Route, currentLocale);
   };
@@ -6300,14 +6321,29 @@ function PublicDocsApp() {
     }
 
     if (currentVersion === "v2" && nextVersion === "v1") {
+      const v1LandingRoute = routeForPublicVersion(nextVersion);
       try {
         window.sessionStorage.setItem(PUBLIC_V2_RETURN_ROUTE_KEY, normalizeRoute(currentPath));
+        window.sessionStorage.setItem(
+          PUBLIC_V1_LANDING_ROUTE_KEY,
+          normalizeRoute(v1LandingRoute)
+        );
       } catch {
         // The V1 page remains reachable even when browser storage is unavailable.
       }
     }
 
-    handleDocLinkClick(event, routeForPublicVersion(nextVersion));
+    const nextRoute = routeForPublicVersion(nextVersion);
+    if (currentVersion === "v1" && nextVersion === "v2") {
+      try {
+        window.sessionStorage.removeItem(PUBLIC_V2_RETURN_ROUTE_KEY);
+        window.sessionStorage.removeItem(PUBLIC_V1_LANDING_ROUTE_KEY);
+      } catch {
+        // Version switching does not depend on clearing browser storage.
+      }
+    }
+
+    handleDocLinkClick(event, nextRoute);
   };
   const handleContentClick = (event: MouseEvent<HTMLDivElement>) => {
     const target = event.target;
