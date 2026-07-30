@@ -1790,7 +1790,7 @@ export const initialDocs: DocPage[] = [
       "检查清单",
       "中文"
     ],
-    "contentHtml": "<h2>使用前准备</h2><p>请准备由系统管理员分配的平台账号，并确认当前设备能够访问 POLYTRON ONE。首次使用建议由管理员或项目交付人员陪同完成检查，避免遗漏相机资源权限、录像排期或警报规则。</p><h2>验收方法</h2><ol><li><p><strong>登录与权限</strong>：确认账号可以登录，并能看见岗位所需的菜单和相机资源。</p></li><li><p><strong>实时画面</strong>：至少打开一台授权相机，确认画面可播放、时间正确且状态为在线。</p></li><li><p><strong>录像回放</strong>：选择已有录像的时间段，确认时间轴存在数据并可正常播放。</p></li><li><p><strong>AI 检测</strong>：对测试相机执行一次符合规则的真实动作，确认系统能够识别并触发警报。</p></li><li><p><strong>通知处置</strong>：从通知列表进入警报详情，完成核查、备注和状态更新。</p></li><li><p><strong>记录结果</strong>：保存异常项、错误提示、相机编号和检查时间，交由管理员处理。</p></li></ol><h2>首次值班建议</h2><p>首次值班时，建议先打开主页观察相机在线率、系统资源与待处理警报，再进入实时视图建立常用网格或标签。离开共享设备前请主动退出账号。</p>",
+    "contentHtml": "<h2>使用前准备</h2><p>请准备由系统管理员分配的平台账号，并确认当前设备能够访问 POLYTRON ONE。首次使用建议由管理员或项目交付人员陪同完成检查，避免遗漏相机资源权限、录像排期或警报规则。</p><h2>验收方法</h2><ol><li><p><strong>登录与权限</strong>：确认账号可以登录，并能看见岗位所需的菜单和相机资源。</p></li><li><p><strong>实时画面</strong>：至少打开一台授权相机，确认画面可播放、时间正确且状态为在线。</p></li><li><p><strong>录像回放</strong>：选择已有录像的时间段，确认时间轴存在数据并可正常播放。</p></li><li><p><strong>AI 检测</strong>：对测试相机执行一次符合规则的真实动作，确认系统能够识别并触发警报。</p></li><li><p><strong>通知处置</strong>：从通知列表进入警报详情，完成核查、备注和状态更新。</p></li><li><p><strong>记录结果</strong>：保存异常项、错误提示、相机编号和检查时间，交由管理员处理。</p></li></ol><h2>首次使用建议</h2><p>首次使用时，建议先打开主页观察相机在线率、系统资源与待处理警报，再进入实时视图建立常用网格或标签。离开共享设备前请主动退出账号。</p>",
     "sections": [
       {
         "id": "preparation",
@@ -3738,13 +3738,13 @@ export const initialDocs: DocPage[] = [
     "updatedAt": "2026-07-24",
     "version": "1.4",
     "readingTime": 4,
-    "summary": "Validate the account, browser, cameras, recordings, AI detection, and notification workflow before the first operational shift.",
+    "summary": "Validate the account, browser, cameras, recordings, AI detection, and notification workflow before initial use.",
     "tags": [
       "Getting Started",
       "Checklist",
       "English"
     ],
-    "contentHtml": "\n      <h2>Before You Begin</h2>\n      <p>Prepare an account assigned by the system administrator and confirm that the workstation can access POLYTRON ONE. For the first operational check, work with an administrator or project delivery specialist so that camera permissions, recording schedules, and alarm rules are not overlooked.</p>\n      <h2>Acceptance Checklist</h2>\n      <ol>\n        <li><p><strong>Login and permissions:</strong> Sign in and confirm that the menus and camera resources required for the role are visible.</p></li>\n        <li><p><strong>Live video:</strong> Open at least one authorized camera. Confirm that video plays, the displayed time is correct, and the device is online.</p></li>\n        <li><p><strong>Recording playback:</strong> Select a period that contains recordings. Confirm that recorded segments appear and play normally.</p></li>\n        <li><p><strong>AI detection:</strong> Perform a controlled action that meets the test rule and confirm that the platform detects it and creates an alarm.</p></li>\n        <li><p><strong>Notification handling:</strong> Open the alarm from Notifications, review the details, add a note, and update its status.</p></li>\n        <li><p><strong>Record the result:</strong> Save any exception, error message, camera identifier, and test time for the administrator.</p></li>\n      </ol>\n      <h2>First-Shift Guidance</h2>\n      <p>Start on Home and review camera availability, system resources, and alarms that require attention. Then open Live View and prepare the grids or tabs used during the shift. Lock the workstation when stepping away and sign out when work is complete.</p>\n    ",
+    "contentHtml": "\n      <h2>Before You Begin</h2>\n      <p>Prepare an account assigned by the system administrator and confirm that the workstation can access POLYTRON ONE. For the first operational check, work with an administrator or project delivery specialist so that camera permissions, recording schedules, and alarm rules are not overlooked.</p>\n      <h2>Acceptance Checklist</h2>\n      <ol>\n        <li><p><strong>Login and permissions:</strong> Sign in and confirm that the menus and camera resources required for the role are visible.</p></li>\n        <li><p><strong>Live video:</strong> Open at least one authorized camera. Confirm that video plays, the displayed time is correct, and the device is online.</p></li>\n        <li><p><strong>Recording playback:</strong> Select a period that contains recordings. Confirm that recorded segments appear and play normally.</p></li>\n        <li><p><strong>AI detection:</strong> Perform a controlled action that meets the test rule and confirm that the platform detects it and creates an alarm.</p></li>\n        <li><p><strong>Notification handling:</strong> Open the alarm from Notifications, review the details, add a note, and update its status.</p></li>\n        <li><p><strong>Record the result:</strong> Save any exception, error message, camera identifier, and test time for the administrator.</p></li>\n      </ol>\n      <h2>Initial Use Guidance</h2>\n      <p>For initial use, start on Home and review camera availability, system resources, and alarms that require attention. Then open Live View and prepare the grids or tabs used for routine monitoring. Lock the workstation when stepping away and sign out when work is complete.</p>\n    ",
     "sections": [
       {
         "id": "before-you-begin",
@@ -3757,8 +3757,8 @@ export const initialDocs: DocPage[] = [
         "body": "Validate login, live video, recordings, AI detection, and notifications."
       },
       {
-        "id": "first-shift-guidance",
-        "heading": "First-Shift Guidance",
+        "id": "initial-use-guidance",
+        "heading": "Initial Use Guidance",
         "body": "Review system health and prepare the monitoring workspace."
       }
     ]

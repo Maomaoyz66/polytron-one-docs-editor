@@ -16,7 +16,7 @@ export const englishSupplementalDocs: DocPage[] = [
     category: "System Overview",
     readingTime: 4,
     summary:
-      "Validate the account, browser, cameras, recordings, AI detection, and notification workflow before the first operational shift.",
+      "Validate the account, browser, cameras, recordings, AI detection, and notification workflow before initial use.",
     tags: ["Getting Started", "Checklist", "English"],
     contentHtml: `
       <h2>Before You Begin</h2>
@@ -30,13 +30,13 @@ export const englishSupplementalDocs: DocPage[] = [
         <li><p><strong>Notification handling:</strong> Open the alarm from Notifications, review the details, add a note, and update its status.</p></li>
         <li><p><strong>Record the result:</strong> Save any exception, error message, camera identifier, and test time for the administrator.</p></li>
       </ol>
-      <h2>First-Shift Guidance</h2>
-      <p>Start on Home and review camera availability, system resources, and alarms that require attention. Then open Live View and prepare the grids or tabs used during the shift. Lock the workstation when stepping away and sign out when work is complete.</p>
+      <h2>Initial Use Guidance</h2>
+      <p>For initial use, start on Home and review camera availability, system resources, and alarms that require attention. Then open Live View and prepare the grids or tabs used for routine monitoring. Lock the workstation when stepping away and sign out when work is complete.</p>
     `,
     sections: [
       { id: "before-you-begin", heading: "Before You Begin", body: "Prepare an account and confirm access to the platform." },
       { id: "acceptance-checklist", heading: "Acceptance Checklist", body: "Validate login, live video, recordings, AI detection, and notifications." },
-      { id: "first-shift-guidance", heading: "First-Shift Guidance", body: "Review system health and prepare the monitoring workspace." },
+      { id: "initial-use-guidance", heading: "Initial Use Guidance", body: "Review system health and prepare the monitoring workspace." },
     ],
   },
   {
