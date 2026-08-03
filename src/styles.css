@@ -3353,14 +3353,12 @@ progress::-webkit-progress-value {
   }
 
   .docs-version-option {
-    min-height: 28px;
-    padding-inline: 6px;
-    font-size: 12px;
+    min-height: 34px;
   }
 
   .docs-version-menu {
-    gap: 0;
-    padding: 3px 4px;
+    gap: 1px;
+    padding: 5px 4px 4px;
   }
 
   .docs-version-menu-title {
@@ -3383,12 +3381,12 @@ progress::-webkit-progress-value {
 
   .docs-nav-group {
     gap: 1px;
-    margin-top: 3px;
+    margin-top: 2px;
   }
 
   .docs-nav-heading {
-    min-height: 40px;
-    padding: 6px 4px;
+    min-height: 36px;
+    padding: 4px;
   }
 
   .docs-nav-children {
@@ -3404,10 +3402,10 @@ progress::-webkit-progress-value {
   }
 
   .docs-nav-link {
-    min-height: 36px;
-    padding: 5px 8px;
+    min-height: 32px;
+    padding: 3px 8px;
     font-size: 13px;
-    line-height: 1.25;
+    line-height: 1.2;
   }
 
   .docs-language-select {
