@@ -3353,12 +3353,14 @@ progress::-webkit-progress-value {
   }
 
   .docs-version-option {
-    min-height: 34px;
+    min-height: 28px;
+    padding-inline: 6px;
+    font-size: 12px;
   }
 
   .docs-version-menu {
-    gap: 1px;
-    padding: 5px 4px 4px;
+    gap: 0;
+    padding: 3px 4px;
   }
 
   .docs-version-menu-title {
