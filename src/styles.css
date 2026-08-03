@@ -1033,7 +1033,7 @@ progress::-webkit-progress-value {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900.98px) {
   .topbar {
     position: static;
     align-items: flex-start;
@@ -2089,6 +2089,11 @@ progress::-webkit-progress-value {
   background: #ffffff;
 }
 
+.docs-mobile-header,
+.docs-mobile-backdrop {
+  display: none;
+}
+
 .docs-brand,
 .docs-brand-subtitle,
 .docs-nav a,
@@ -2329,6 +2334,16 @@ progress::-webkit-progress-value {
 .docs-sidebar-icon-button:hover {
   color: #111111;
   background: #f8f8f8;
+}
+
+.docs-mobile-header-button:focus-visible,
+.docs-sidebar-icon-button:focus-visible,
+.docs-version-button:focus-visible,
+.docs-language-button:focus-visible,
+.docs-nav-heading:focus-visible,
+.docs-nav-link:focus-visible {
+  outline: 2px solid #1c64f2;
+  outline-offset: 2px;
 }
 
 .docs-sidebar-collapsed-actions {
@@ -2580,7 +2595,8 @@ progress::-webkit-progress-value {
 @media (prefers-reduced-motion: reduce) {
   .docs-nav-chevron,
   .docs-nav-children,
-  .docs-nav-heading {
+  .docs-nav-heading,
+  .docs-sidebar {
     transition: none;
   }
 }
@@ -3132,9 +3148,103 @@ progress::-webkit-progress-value {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900.98px) {
   .rich-layout {
     grid-template-columns: 1fr;
+  }
+
+  .docs-shell {
+    min-width: 0;
+    overflow-x: clip;
+  }
+
+  .docs-mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) auto 44px;
+    align-items: center;
+    gap: 8px;
+    min-height: 60px;
+    padding: max(8px, env(safe-area-inset-top)) 16px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03);
+    backdrop-filter: blur(12px);
+  }
+
+  .docs-mobile-header-button {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    place-items: center;
+    border: 0;
+    border-radius: 8px;
+    color: #374151;
+    background: transparent;
+  }
+
+  .docs-mobile-header-button:hover,
+  .docs-mobile-header-button:focus-visible {
+    color: #111827;
+    background: #f3f4f6;
+  }
+
+  .docs-mobile-brand {
+    display: grid;
+    min-width: 0;
+    color: #111111;
+    line-height: 1.15;
+    text-decoration: none;
+  }
+
+  .docs-mobile-brand strong,
+  .docs-mobile-brand span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .docs-mobile-brand strong {
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .docs-mobile-brand span {
+    margin-top: 2px;
+    color: #4b5563;
+    font-size: 12px;
+  }
+
+  .docs-mobile-version {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 24px;
+    padding: 0 7px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    color: #4b5563;
+    background: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .docs-mobile-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(1px);
   }
 
   .docs-layout {
@@ -3147,35 +3257,97 @@ progress::-webkit-progress-value {
   }
 
   .docs-sidebar {
-    position: static;
-    height: 420px;
-    max-height: 100vh;
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 80;
+    width: min(86vw, 340px);
+    height: 100dvh;
+    max-height: none;
     overflow: hidden;
-    padding: 24px 20px 22px;
-    border-right: 0;
-    border-bottom: 1px solid #e5e7eb;
+    padding:
+      max(20px, env(safe-area-inset-top))
+      16px
+      max(18px, env(safe-area-inset-bottom));
+    border-right: 1px solid #e5e7eb;
+    border-bottom: 0;
+    background: #ffffff;
+    box-shadow: 18px 0 46px rgba(15, 23, 42, 0.16);
+    transform: translateX(-102%);
+    visibility: hidden;
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 220ms step-end;
   }
 
-  .docs-sidebar.collapsed {
-    height: 76px;
-    max-height: 76px;
-    padding: 20px;
+  .docs-sidebar.mobile-open {
+    transform: translateX(0);
+    visibility: visible;
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s step-start;
   }
 
   .docs-sidebar-collapsed-actions {
-    margin-left: 0;
+    display: none;
   }
 
   .docs-sidebar-inner {
     width: 100%;
-    max-width: 680px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
+  }
+
+  .docs-sidebar-header {
+    margin-bottom: 14px;
+  }
+
+  .docs-search {
+    min-height: 44px;
+    margin-bottom: 14px;
+  }
+
+  .docs-search input {
+    height: 42px;
+  }
+
+  .docs-sidebar-icon-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .docs-version-button,
+  .docs-version-option,
+  .docs-language-button,
+  .docs-language-option,
+  .docs-nav-heading,
+  .docs-nav-link {
+    min-height: 44px;
+  }
+
+  .docs-version-button,
+  .docs-language-button {
+    height: 44px;
+  }
+
+  .docs-nav {
+    padding-bottom: 18px;
+  }
+
+  .docs-language-select {
+    margin-top: 4px;
+    padding-top: 8px;
   }
 
   .docs-article {
     width: min(100%, 820px);
     margin: 0 auto;
-    padding: 42px 16px 72px;
+    padding: 34px 20px 72px;
+  }
+
+  .docs-content h2,
+  .docs-content.rich-document h2,
+  .supplemental-heading h2 {
+    scroll-margin-top: 76px;
   }
 
   .rich-toolbar {
@@ -3194,26 +3366,63 @@ progress::-webkit-progress-value {
 }
 
 @media (max-width: 620px) {
+  .docs-mobile-header {
+    grid-template-columns: 44px minmax(0, 1fr) auto 44px;
+    gap: 6px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
   .docs-sidebar {
-    padding: 20px 16px;
+    width: min(92vw, 340px);
   }
 
   .docs-article {
     width: 100%;
-    padding: 34px 16px 76px;
+    min-width: 0;
+    padding: 26px 16px 68px;
+  }
+
+  .docs-breadcrumb {
+    gap: 6px;
+    margin-bottom: 14px;
+    font-size: 13px;
   }
 
   .docs-article h1 {
+    min-height: 0;
+    margin-bottom: 12px;
     font-size: 26px;
+    line-height: 1.18;
   }
 
   .docs-summary {
-    margin-bottom: 28px;
-    font-size: 16px;
+    min-height: 0;
+    margin-bottom: 24px;
+    font-size: 15px;
+    line-height: 1.65;
   }
 
   .docs-content {
+    min-width: 0;
+    max-width: 100%;
     padding: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .docs-content pre,
+  .docs-content code {
+    max-width: 100%;
+  }
+
+  .docs-content pre {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .matrix-scroll {
+    max-width: calc(100vw - 32px);
+    -webkit-overflow-scrolling: touch;
   }
 
   .docs-content > div:not(.docs-node-card-grid):has(> a),
@@ -3226,7 +3435,8 @@ progress::-webkit-progress-value {
   }
 
   .docs-content > .docs-node-card-grid > .docs-node-card {
-    min-height: 210px;
+    width: 100%;
+    min-height: 0;
   }
 
   .paper-shell {
@@ -5575,7 +5785,7 @@ progress::-webkit-progress-value {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900.98px) {
   .notion-editor .workspace.rich-layout {
     grid-template-columns: 1fr;
     height: auto;

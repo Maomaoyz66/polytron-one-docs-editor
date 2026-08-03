@@ -39,6 +39,7 @@ import {
   ListOrdered,
   Lock,
   LogOut,
+  Menu,
   PanelLeftClose,
   PanelLeftOpen,
   Pencil,
@@ -6130,9 +6131,16 @@ function PublicDocsApp() {
   const selectedDoc = docForPath(currentPath, publicDocs, currentLocale);
   const [query, setQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(max-width: 900px)").matches,
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileSearchButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileDrawerRef = useRef<HTMLElement>(null);
+  const lastMobileTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 900.98px)").matches
   );
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<LightboxImage | null>(null);
   const [shouldFocusSearch, setShouldFocusSearch] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
@@ -6188,10 +6196,27 @@ function PublicDocsApp() {
   }, [selectedDoc.title]);
 
   useEffect(() => {
-    const handlePopState = () => setCurrentPath(window.location.pathname);
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+      if (window.matchMedia("(max-width: 900.98px)").matches) {
+        setIsMobileSidebarOpen(false);
+      }
+    };
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 900.98px)");
+    const handleViewportChange = () => {
+      setIsMobileViewport(mediaQuery.matches);
+      if (!mediaQuery.matches) setIsMobileSidebarOpen(false);
+    };
+
+    handleViewportChange();
+    mediaQuery.addEventListener("change", handleViewportChange);
+    return () => mediaQuery.removeEventListener("change", handleViewportChange);
   }, []);
 
   useEffect(() => {
@@ -6205,11 +6230,74 @@ function PublicDocsApp() {
   }, [currentPath, selectedDoc.category]);
 
   useEffect(() => {
-    if (!isSidebarCollapsed && shouldFocusSearch) {
+    const isSearchVisible = isMobileViewport ? isMobileSidebarOpen : !isSidebarCollapsed;
+    if (isSearchVisible && shouldFocusSearch) {
       searchInputRef.current?.focus();
       setShouldFocusSearch(false);
     }
-  }, [isSidebarCollapsed, shouldFocusSearch]);
+  }, [isMobileSidebarOpen, isMobileViewport, isSidebarCollapsed, shouldFocusSearch]);
+
+  useEffect(() => {
+    if (!isMobileViewport || !isMobileSidebarOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setIsMobileSidebarOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusableElements = Array.from(
+        mobileDrawerRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        ) ?? []
+      ).filter(
+        (element) =>
+          element.getClientRects().length > 0 && !element.closest('[aria-hidden="true"]')
+      );
+      if (!focusableElements.length) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const activeElement = document.activeElement;
+
+      if (
+        event.shiftKey &&
+        (activeElement === firstElement || !mobileDrawerRef.current?.contains(activeElement))
+      ) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (
+        !event.shiftKey &&
+        (activeElement === lastElement || !mobileDrawerRef.current?.contains(activeElement))
+      ) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    if (!shouldFocusSearch) {
+      window.requestAnimationFrame(() => mobileCloseButtonRef.current?.focus());
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+      if (window.matchMedia("(max-width: 900.98px)").matches) {
+        window.requestAnimationFrame(() => lastMobileTriggerRef.current?.focus());
+      }
+    };
+  }, [isMobileSidebarOpen, isMobileViewport]);
+
+  useEffect(() => {
+    if (!isMobileViewport || isMobileSidebarOpen) return;
+    setIsLanguageMenuOpen(false);
+    setIsVersionMenuOpen(false);
+  }, [isMobileSidebarOpen, isMobileViewport]);
 
   useEffect(() => {
     if (!isLanguageMenuOpen) return;
@@ -6267,10 +6355,15 @@ function PublicDocsApp() {
 
   const navigateToDoc = (route: string) => {
     const normalizedRoute = normalizeRoute(route);
-    if (normalizeRoute(window.location.pathname) !== normalizedRoute) {
+    const routeChanged = normalizeRoute(window.location.pathname) !== normalizedRoute;
+    if (routeChanged) {
       window.history.pushState(null, "", normalizedRoute);
     }
+    if (isMobileViewport) setIsMobileSidebarOpen(false);
     setCurrentPath(normalizedRoute);
+    if (routeChanged) {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
   };
 
   const switchPublicLocale = (nextLocale: DocLocale) => {
@@ -6416,16 +6509,78 @@ function PublicDocsApp() {
     ? publicCopy.sidebarToggleOpen
     : publicCopy.sidebarToggleClose;
   const sidebarSearchLabel = publicCopy.sidebarSearch;
+  const desktopSidebarCollapsed = !isMobileViewport && isSidebarCollapsed;
   const openSidebarSearch = () => {
     setShouldFocusSearch(true);
     setIsSidebarCollapsed(false);
   };
+  const openMobileSidebar = (trigger: HTMLButtonElement, focusSearch = false) => {
+    lastMobileTriggerRef.current = trigger;
+    setShouldFocusSearch(focusSearch);
+    setIsMobileSidebarOpen(true);
+  };
+  const openMobileSidebarSearch = (trigger: HTMLButtonElement) => {
+    openMobileSidebar(trigger, true);
+  };
 
   return (
     <div className="docs-shell">
-      <main className={`docs-layout ${isSidebarCollapsed ? "sidebar-collapsed" : ""}`}>
-        <aside className={`docs-sidebar ${isSidebarCollapsed ? "collapsed" : ""}`}>
-          {isSidebarCollapsed ? (
+      <header
+        aria-hidden={isMobileViewport && isMobileSidebarOpen ? true : undefined}
+        className="docs-mobile-header"
+      >
+        <button
+          ref={mobileMenuButtonRef}
+          aria-controls="docs-navigation-drawer"
+          aria-expanded={isMobileSidebarOpen}
+          aria-label={publicCopy.sidebarToggleOpen}
+          className="docs-mobile-header-button"
+          onClick={(event) => openMobileSidebar(event.currentTarget)}
+          type="button"
+        >
+          <Menu size={21} />
+        </button>
+        <a
+          className="docs-mobile-brand"
+          href={brandRoute}
+          onClick={(event) => handleDocLinkClick(event, brandRoute)}
+        >
+          <strong>POLYTRON ONE</strong>
+          <span>{publicCopy.brandSubtitle}</span>
+        </a>
+        <span className="docs-mobile-version">{currentVersion.toUpperCase()}</span>
+        <button
+          ref={mobileSearchButtonRef}
+          aria-controls="docs-navigation-drawer"
+          aria-label={sidebarSearchLabel}
+          className="docs-mobile-header-button"
+          onClick={(event) => openMobileSidebarSearch(event.currentTarget)}
+          type="button"
+        >
+          <Search size={19} />
+        </button>
+      </header>
+      {isMobileViewport && isMobileSidebarOpen && (
+        <button
+          aria-label={publicCopy.sidebarToggleClose}
+          className="docs-mobile-backdrop"
+          onClick={() => setIsMobileSidebarOpen(false)}
+          type="button"
+        />
+      )}
+      <main className={`docs-layout ${desktopSidebarCollapsed ? "sidebar-collapsed" : ""}`}>
+        <aside
+          ref={mobileDrawerRef}
+          aria-label={currentLocale === "en" ? "Documentation navigation" : "文档导航"}
+          aria-hidden={isMobileViewport ? !isMobileSidebarOpen : undefined}
+          aria-modal={isMobileViewport && isMobileSidebarOpen ? true : undefined}
+          className={`docs-sidebar ${desktopSidebarCollapsed ? "collapsed" : ""} ${
+            isMobileSidebarOpen ? "mobile-open" : ""
+          }`}
+          id="docs-navigation-drawer"
+          role={isMobileViewport ? "dialog" : undefined}
+        >
+          {desktopSidebarCollapsed ? (
             <div className="docs-sidebar-collapsed-actions">
               <button
                 aria-expanded={false}
@@ -6512,14 +6667,25 @@ function PublicDocsApp() {
                   </a>
                 </div>
                 <button
+                  ref={mobileCloseButtonRef}
                   aria-expanded
-                  aria-label={sidebarToggleLabel}
+                  aria-label={
+                    isMobileViewport ? publicCopy.sidebarToggleClose : sidebarToggleLabel
+                  }
                   className="docs-sidebar-icon-button"
-                  onClick={() => setIsSidebarCollapsed(true)}
-                  title={sidebarToggleLabel}
+                  onClick={() => {
+                    if (isMobileViewport) {
+                      setIsMobileSidebarOpen(false);
+                    } else {
+                      setIsSidebarCollapsed(true);
+                    }
+                  }}
+                  title={
+                    isMobileViewport ? publicCopy.sidebarToggleClose : sidebarToggleLabel
+                  }
                   type="button"
                 >
-                  <PanelLeftClose size={18} />
+                  {isMobileViewport ? <X size={19} /> : <PanelLeftClose size={18} />}
                 </button>
               </div>
 
@@ -6535,7 +6701,10 @@ function PublicDocsApp() {
                 <kbd>K</kbd>
               </label>
 
-              <nav className="docs-nav" aria-label="文档导航">
+              <nav
+                className="docs-nav"
+                aria-label={currentLocale === "en" ? "Documentation navigation" : "文档导航"}
+              >
               {visibleGroups.map((group) => {
                   const isExpanded = normalizedQuery
                     ? true
@@ -6562,6 +6731,11 @@ function PublicDocsApp() {
                         <div className="docs-nav-children-inner">
                           {group.docs.map((doc) => (
                             <a
+                              aria-current={
+                                normalizeRoute(doc.route) === normalizeRoute(selectedDoc.route)
+                                  ? "page"
+                                  : undefined
+                              }
                               className={`docs-nav-link ${
                                 normalizeRoute(doc.route) === normalizeRoute(selectedDoc.route)
                                   ? "active"
@@ -6622,7 +6796,11 @@ function PublicDocsApp() {
           )}
         </aside>
 
-        <article className="docs-article" id="nd-page">
+        <article
+          aria-hidden={isMobileViewport && isMobileSidebarOpen ? true : undefined}
+          className="docs-article"
+          id="nd-page"
+        >
           <div className="docs-breadcrumb">
             <a
               href={moduleRootRoute(selectedDoc.category, publicDocs)}
