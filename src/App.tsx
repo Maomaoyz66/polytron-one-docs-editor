@@ -6241,6 +6241,8 @@ function PublicDocsApp() {
     if (!isMobileViewport || !isMobileSidebarOpen) return;
 
     const previousOverflow = document.body.style.overflow;
+    const previousPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -6279,6 +6281,11 @@ function PublicDocsApp() {
       }
     };
 
+    if (scrollbarWidth > 0) {
+      const currentPaddingRight =
+        Number.parseFloat(window.getComputedStyle(document.body).paddingRight) || 0;
+      document.body.style.paddingRight = `${currentPaddingRight + scrollbarWidth}px`;
+    }
     document.body.style.overflow = "hidden";
     if (!shouldFocusSearch) {
       window.requestAnimationFrame(() => mobileCloseButtonRef.current?.focus());
@@ -6286,6 +6293,7 @@ function PublicDocsApp() {
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.body.style.paddingRight = previousPaddingRight;
       document.removeEventListener("keydown", handleKeyDown);
       if (window.matchMedia("(max-width: 900.98px)").matches) {
         window.requestAnimationFrame(() => lastMobileTriggerRef.current?.focus());
@@ -6496,6 +6504,10 @@ function PublicDocsApp() {
   };
   const toggleNavGroup = (category: string) => {
     setExpandedNavGroups((current) => {
+      if (isMobileViewport) {
+        return current.has(category) ? new Set() : new Set([category]);
+      }
+
       const next = new Set(current);
       if (next.has(category)) {
         next.delete(category);
@@ -6516,6 +6528,7 @@ function PublicDocsApp() {
   };
   const openMobileSidebar = (trigger: HTMLButtonElement, focusSearch = false) => {
     lastMobileTriggerRef.current = trigger;
+    setExpandedNavGroups(new Set([selectedDoc.category]));
     setShouldFocusSearch(focusSearch);
     setIsMobileSidebarOpen(true);
   };
@@ -6560,11 +6573,15 @@ function PublicDocsApp() {
           <Search size={19} />
         </button>
       </header>
-      {isMobileViewport && isMobileSidebarOpen && (
+      {isMobileViewport && (
         <button
+          aria-hidden={!isMobileSidebarOpen}
           aria-label={publicCopy.sidebarToggleClose}
-          className="docs-mobile-backdrop"
+          className={`docs-mobile-backdrop ${
+            isMobileSidebarOpen ? "is-visible" : ""
+          }`}
           onClick={() => setIsMobileSidebarOpen(false)}
+          tabIndex={isMobileSidebarOpen ? 0 : -1}
           type="button"
         />
       )}
